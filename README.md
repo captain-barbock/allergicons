@@ -10,33 +10,33 @@ All icons data and their translations (de, fr, it) are in one file [allergens.js
 
 ### Allergens
 
-    * Celery
-    * Crustaceans
-    * Eggs
-    * Fish
-    * Gluten
-    * Lupin
-    * Milk (Lactose)
-    * Molluscs
-    * Mustard
-    * Nuts
-    * Peanuts
-    * Sesame seeds
-    * Sulphur dioxide and sulphites
-    * Soybeans
+* Celery
+* Crustaceans
+* Eggs
+* Fish
+* Gluten
+* Lupin
+* Milk (Lactose)
+* Molluscs
+* Mustard
+* Nuts
+* Peanuts
+* Sesame seeds
+* Sulphur dioxide and sulphites
+* Soybeans
 
 ### Labels
 
-    * Vegan
-    * Vegetarian
+* Vegan
+* Vegetarian
 
 ## Build
 
 To rebuild `Allergicons`, the following must be installed:
 
-    * rsvg-convert
-    * python3
-        * [Jinja](https://jinja.palletsprojects.com)
+* rsvg-convert
+* python3
+    * [Jinja](https://jinja.palletsprojects.com)
 
 In the repository:
 
