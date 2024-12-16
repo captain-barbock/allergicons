@@ -1,0 +1,80 @@
+#!/usr/bin/env python3
+
+# Create showcase.html
+
+import json
+
+from jinja2 import Template
+
+BASE_DIR = "../"
+ALLERGENS_JSON_PATH = BASE_DIR + "allergens.json"
+SHOWCASE_HTML_PATH = BASE_DIR + "showcase.html"
+
+icons = None
+with open(ALLERGENS_JSON_PATH) as h:
+    icons = json.load(h)
+
+template = Template("""<!doctype html>
+<html>
+  <head>
+    <title>Allergicons showcase</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <style>
+      body {
+        font-family: sans-serif;
+      }
+      h1 {
+        padding: 10px;
+        font-size: 24px;
+        font-weight: bold;
+      }
+      table {
+        margin: 10px;
+      }
+      td {
+        padding: 8px 8px 24px 0px;
+      }
+      .icon-id {
+        vertical-align: top;
+        font-weight: bold;
+      }
+      .names {
+        vertical-align: top;
+      }
+      .icon {
+        vertical-align: middle;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Allergicons showcase</h1>
+    <table>
+      <tbody>
+        {% for icon in icons %}
+          <tr>
+            <td class="icon-id">
+              {{ icon.id }}
+            </td>
+            <td class="names">
+              • {{ icon.en }}<br/>
+              • {{ icon.fr }}<br/>
+              • {{ icon.de }}<br/>
+              • {{ icon.it }}<br/>
+            </td>
+            <td class="icon">
+              <img src="data:{{ icon.icons.medium.mime }};base64,{{ icon.icons.medium.data }}" />
+            </td>
+            <td>
+              <img src="data:{{ icon.icons.large.mime }};base64,{{ icon.icons.large.data }}" />
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </body>
+</html>""")
+
+with open(SHOWCASE_HTML_PATH, "w") as h:
+    h.write(template.render(icons=icons))

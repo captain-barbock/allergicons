@@ -1,0 +1,36 @@
+#!/usr/bin/env python3
+
+# Create allergens.json
+
+import csv
+import json
+
+BASE_DIR = "../"
+ICONS_META_PATH = BASE_DIR + "icons_meta.csv"
+ALLERGENS_JSON_PATH = BASE_DIR + "allergens.json"
+ASSETS_DIR = BASE_DIR + "assets/"
+ICONS_MEDIUM_DIR = ASSETS_DIR + "icons/solid/"
+ICONS_LARGE_DIR = ASSETS_DIR + "icons/large/"
+
+icons = []
+
+with open(ICONS_META_PATH) as icons_meta_handler:
+    icons_meta = csv.DictReader(icons_meta_handler)
+
+    for icon in icons_meta:
+        medium_path = ICONS_MEDIUM_DIR + icon["id"]
+        medium_data = ""
+        with open(medium_path) as medium_data_handler:
+            medium_data = medium_data_handler.read().strip()
+
+        large_path = ICONS_LARGE_DIR + icon["id"]
+        large_data = ""
+        with open(large_path) as large_date_handler:
+            large_data = large_date_handler.read().strip()
+
+        icon["icons"] = {"large": {"mime": "image/svg+xml", "data": large_data},
+                         "medium": {"mime": "image/svg+xml", "data": medium_data}}
+        icons.append(icon)
+
+with open(ALLERGENS_JSON_PATH, "w") as allergens_json_handler:
+    json.dump(icons, allergens_json_handler, indent=4)

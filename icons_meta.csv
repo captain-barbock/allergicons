@@ -1,0 +1,17 @@
+id,type,en,fr,de,it
+celery,allergen,Celery,Céleri,Sellerie,Sedano
+crustaceans,allergen,Crustaceans,Crustacés,Krebstiere,Crostacei
+eggs,allergen,Eggs,Oeufs,Eier,Uova
+fish,allergen,Fish,Poissons,Fische,Pesce
+gluten,allergen,Gluten,Gluten,Gluten,Glutine
+lupin,allergen,Lupin,Lupins,Lupinen,Lupini
+milk,allergen,Milk (Lactose),Lait (Lactose),Milch (Laktose),Latte (Lattosio)
+molluscs,allergen,Molluscs,Mollusques,Weichtiere,Molluschi
+mustard,allergen,Mustard,Moutarde,Senf,Senape
+nuts,allergen,Nuts,Fruits à coque dure ou noix,Hartshcalenobst oder Nüsse,Frutta a guscio o nocci
+peanuts,allergen,Peanuts,Arachides,Erdnüsse,Arachidi
+sesame,allergen,Sesame seeds,Graines de sésame,Sesamsamen,Semi di sesamo
+so2,allergen,Sulphur dioxide and sulphites,Anhydride sulfureux et sullfites,Schwefeldioxid und Sulfite,Anidre solforosa e solfti
+soya,allergen,Soybeans,Soja,Sojabohnen,Soia
+vegan,label,Vegan,Végan,Vegan,Vegano
+vegetarian,label,Vegetarian,Végétarien,Vegetarisch,Vegetariano

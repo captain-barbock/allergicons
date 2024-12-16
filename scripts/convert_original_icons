@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# Download and convert erudus food allergens icons
+
+ERUDUS_FRAG_URL=https://raw.githubusercontent.com/Erudus/erudus-icons/master/src/svg/circle
+
+BASE_DIR=..
+ASSETS_DIR=$BASE_DIR/assets
+ERUDUS_DIR=$ASSETS_DIR/erudus_icons
+MEDIUM_ICONS_DIR=$ASSETS_DIR/icons/medium
+LARGE_ICONS_DIR=$ASSETS_DIR/icons/large
+
+rm -f $ERUDUS_DIR/* $MEDIUM_ICONS_DIR/* $LARGE_ICONS_DIR/* 
+mkdir -p $ERUDUS_DIR $MEDIUM_ICONS_DIR $LARGE_ICONS_DIR 
+
+ICONS=`sed 1d $BASE_DIR/icons_meta.csv | cut -d, -f1`
+for ICON in $ICONS; do
+    ERUDUS_PATH=$ERUDUS_DIR/$ICON.svg
+
+    # Download icon
+    ERUDUS_URL="$ERUDUS_FRAG_URL-$ICON.svg"
+    echo "Downloading $ERUDUS_URL into $ERUDUS_PATH"
+    curl --output $ERUDUS_PATH $ERUDUS_URL
+
+    # Create medium icon - 32
+    OUT_PATH=$MEDIUM_ICONS_DIR/$ICON
+    echo "Converting $ERUDUS_PATH into $OUT_PATH"
+    rsvg-convert -a -w 32 -f svg $ERUDUS_PATH | tr -d '\n' | tr -d '\t' | grep -o -e '<svg.*svg>' | base64 > $OUT_PATH
+
+    # Create large icon - 64
+    OUT_PATH=$LARGE_ICONS_DIR/$ICON
+    echo "Converting $ERUDUS_PATH into $OUT_PATH"
+    rsvg-convert -a -w 64 -f svg $ERUDUS_PATH | tr -d '\n' | tr -d '\t' | grep -o -e '<svg.*svg>' | base64 > $OUT_PATH
+done
